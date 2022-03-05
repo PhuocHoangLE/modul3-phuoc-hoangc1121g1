@@ -220,4 +220,39 @@ khach_hang.ma_loai_khach=1,
 khach_hang.ho_ten
 from khach_hang;
 
+-- task 18:	Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).
+delete khachhang,hopdong,hopdongchitiet from khachhang inner join hopdong on khachhang.IDKhachHang = hopdong.IDKhachHang
+inner join hopdongchitiet on hopdong.IDHopDong = hopdongchitiet.IDHopDong
+where not exists(select hopdong.IDHopDong where year(hopdong.NgayLamHopDong)>'2021' and khachhang.IDKhachHang = hopdong.IDKhachHang) ;
+
+-- task 19: Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
+update dich_vu_di_kem
+set gia = gia*2
+where dich_vu_di_kem.ma_dich_vu_di_kem in (select* from (select dich_vu_di_kem.ma_dich_vu_di_kem from dich_vu_di_kem
+join hop_dong_chi_tiet hdct on hdct.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+join hop_dong hd on hdct.ma_hop_dong = hd.ma_hop_dong
+where hdct.so_luong>10 and year(hd.ngay_lam_hop_dong)=2020) tdlTmp);
+
+select dich_vu_di_kem.ma_dich_vu_di_kem,
+ten_dich_vu_di_kem,
+gia
+from dich_vu_di_kem;
+
+-- task 20:Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống, 
+-- thông tin hiển thị bao gồm id (ma_nhan_vien, ma_khach_hang), ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.
+select nhan_vien.ma_nhan_vien,
+nhan_vien.ho_ten,
+nhan_vien.email,
+nhan_vien.so_dien_thoai,
+nhan_vien.ngay_sinh,
+nhan_vien.dia_chi
+from nhan_vien
+union all select khach_hang.ma_khach_hang,
+khach_hang.ho_ten,
+khach_hang.email,
+khach_hang.so_dien_thoai,
+khach_hang.ngay_sinh,
+khach_hang.dia_chi
+from khach_hang;
+
 
