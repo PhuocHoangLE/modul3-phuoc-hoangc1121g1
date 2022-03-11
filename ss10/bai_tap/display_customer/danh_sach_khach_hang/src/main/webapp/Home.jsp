@@ -1,8 +1,19 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <title>danh sách khách hàng</title>
+  <style>
+    table{
+      margin: 0 auto ;
+      text-align: center;
+    }
+    img{
+      width: 100px ;
+      height: 70px ;
+    }
+  </style>
 
 </head>
 <body>
@@ -17,18 +28,23 @@
     <th>Ảnh</th>
   </tr>
 
-  <c:forEach var="khachHang" items="${listDanhSachKhachHang}">
+  <c:forEach var="i" items="${list}">
     <tr>
       <td>
-        <c:out value="${khachHang.name}"/></td>
+        ${i.name}
+      </td>
+      
       <td>
-        <c:out value="${khachHang.dateofBirth}"/></td>
+        ${i.dateOffBirth}
+    </td>
       <td>
-        <c:out value="${khachHang.address}"/></td>
+       ${i.address}
+      </td>
       <td>
-        <img style="width: 70px;height: 70px" src="<c:out value=" ${khachHang.picture}" />">
+        <img src="${i.picture}">
       </td>
     </tr>
+
   </c:forEach>
 
 </table>

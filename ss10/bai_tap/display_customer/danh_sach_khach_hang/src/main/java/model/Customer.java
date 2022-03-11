@@ -1,61 +1,50 @@
 package model;
 
 public class Customer {
-    private String Name ;
-    private String DateOfBirth ;
-    private String Address ;
-    private String Picture ;
+    private String name;
+    private String dateOffBirth;
+    private String address;
+    private String picture;
 
     public Customer() {
     }
 
-    public Customer(String name, String dateOfBirth, String address, String picture) {
-        Name = name;
-        DateOfBirth = dateOfBirth;
-        Address = address;
-        Picture = picture;
+    public Customer(String name, String dateOffBirth, String address, String picture) {
+        this.name = name;
+        this.dateOffBirth = dateOffBirth;
+        this.address = address;
+        this.picture = picture;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public String getDateOfBirth() {
-        return DateOfBirth;
+    public String getDateOffBirth() {
+        return dateOffBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        DateOfBirth = dateOfBirth;
+    public void setDateOffBirth(String dateOffBirth) {
+        this.dateOffBirth = dateOffBirth;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public String getPicture() {
-        return Picture;
+        return picture;
     }
 
     public void setPicture(String picture) {
-        Picture = picture;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "Name='" + Name + '\'' +
-                ", DateOfBirth='" + DateOfBirth + '\'' +
-                ", Address='" + Address + '\'' +
-                ", Picture='" + Picture + '\'' +
-                '}';
+        this.picture = picture;
     }
 }
-
