@@ -3,11 +3,16 @@
 <html>
 <head>
     <title>Create new customer</title>
+    <style>
+        .message{
+            color:green;
+        }
+    </style>
 </head>
 <body>
 <h1>Create new customer</h1>
 <p>
-    <c:if test='${requestScope["message"]!= null}'>
+    <c:if test='${requestScope["message"] != null}'>
         <span class="message">${requestScope["message"]}</span>
     </c:if>
 </p>
@@ -37,6 +42,5 @@
         </table>
     </fieldset>
 </form>
-
 </body>
 </html>

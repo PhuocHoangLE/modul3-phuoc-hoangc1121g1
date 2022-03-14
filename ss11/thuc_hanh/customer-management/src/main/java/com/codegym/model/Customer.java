@@ -1,10 +1,10 @@
 package com.codegym.model;
 
 public class Customer {
-    private int id ;
-    private String name ;
-    private String email ;
-    private String address ;
+    private int id;
+    private String name;
+    private String email;
+    private String address;
 
     public Customer() {
     }
@@ -46,8 +46,5 @@ public class Customer {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public void put(int id, Customer customer) {
     }
 }
