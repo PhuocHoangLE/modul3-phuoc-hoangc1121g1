@@ -5,7 +5,7 @@ import model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductRepository implements  IProductRepository {
+public class ProductRepository implements IProductRepository {
     static List<Product> productList = new ArrayList<>();
 
     static {
@@ -24,33 +24,37 @@ public class ProductRepository implements  IProductRepository {
 
     @Override
     public Product findById(Integer id) {
-        for (Product product : productList){
+        for (Product product : productList) {
             if (product.getId().equals(id)) {
                 return product;
             }
+        }
+        return null;
     }
-        return null ;
-}
+
     @Override
     public void create(Product product) {
         productList.add(product);
     }
+
     @Override
     public void save(Product product) {
         productList.add(product);
     }
+
     @Override
     public void delete(Integer id) {
-        for (int i = 0 ; i < productList.size() ; i++) {
-            if(productList.get(i).getId()==id){
-                productList.remove(i) ;
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getId().equals(id)){
+                productList.remove(i);
             }
         }
     }
+
     @Override
     public void update(Integer id, String name, String detail, Integer price) {
-        for (Product product: productList){
-            if (product.getId().equals(id)){
+        for (Product product : productList) {
+            if (product.getId().equals(id)) {
                 product.setName(name);
                 product.setDetail(detail);
                 product.setPrice(price);

@@ -122,6 +122,48 @@ public class UserDAO implements IUserDAO{
         return rowUpdated;
     }
 
+    @Override
+    public User getUserById(int id) {
+        User user = null ;
+        String query = "{CALL get_user_by_id(?)}";
+        // Thiết lập kết nối
+        try (Connection connection = getConnection();
+            // Bước 2: Tạo một câu lệnh bằng đối tượng kết nối
+            CallableStatement callableStatement = connection.prepareCall(query);) {
+            callableStatement.setInt(1,id);
+
+            //Bước 3: Thực thi truy vấn hoặc cập nhật truy vấn
+             ResultSet rs = callableStatement.executeQuery() ;
+             // Bước 4: Xử lý đối tượng ResultSet.
+             while (rs.next()) {
+                 String name = rs.getString("name");
+                 String email = rs.getString("email");
+                 String country = rs.getString("country");
+                 user = new User(id, name, email, country);
+             }
+        } catch (SQLException e){
+                 printSQLException(e);
+        }
+        return user ;
+    }
+
+    @Override
+    public void insertUserStore(User user) throws SQLException {
+        String query = "{CALL insert_user(?,?,?)}" ;
+        // câu lệnh try-with-resource sẽ tự động đóng kết nối.
+        try(Connection connection = getConnection();
+        CallableStatement callableStatement = connection.prepareCall(query);){
+            callableStatement.setString(1,user.getName());
+            callableStatement.setString(2,user.getEmail());
+            callableStatement.setString(3,user.getCountry());
+            System.out.println(callableStatement);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+
+    }
+
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

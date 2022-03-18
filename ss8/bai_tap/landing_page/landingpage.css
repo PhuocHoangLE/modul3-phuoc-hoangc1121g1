@@ -12,3 +12,15 @@
 .picture1 :hover {
     border: 1px solid #777;
 }
+@media only screen and (max-width: 700px){
+    .row {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .row {
+        width: 100%;
+    }
+}

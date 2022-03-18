@@ -27,6 +27,11 @@ div.gallery img{
 *{
     box-sizing: border-box;
 }
+.row {
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
+}
 .reponsive{
     padding: 0 6px;
     float: left;
